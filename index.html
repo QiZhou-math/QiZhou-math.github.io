@@ -346,7 +346,7 @@
             </div>
 
             <div class="preprint">
-                <div class="preprint-title">(With Wei Zhang)Power convexity of the torsion function on horo-convex domains in hyperbolic space.</div>
+                <div class="preprint-title">(With Wei Zhang) Power convexity of the torsion function on horo-convex domains in hyperbolic space.</div>
                 <div class="preprint-links">
                     <a href="https://arxiv.org/pdf/2609.02516"><i class="fas fa-external-link-alt"></i> arXiv</a>
                 </div>
@@ -384,7 +384,58 @@
             </ul>
         </section>
     </div>
-    <p>Last updated: 2026.8.10</p>
+    <div style="text-align: center; color: #888; font-size: 13px;">
+  Last updated:
+  <time id="last-updated">Loading...</time>
+  (UTC+8)
+</div>
+
+<script>
+(async function () {
+  const element = document.getElementById("last-updated");
+
+  try {
+    const url = new URL(
+      "https://api.github.com/repos/QiZhou-math/qizhou-math.github.io/commits"
+    );
+    url.searchParams.set("path", "index.html");
+    url.searchParams.set("per_page", "1");
+
+    const response = await fetch(url);
+    if (!response.ok) throw new Error("Request failed");
+
+    const commits = await response.json();
+    const timestamp = commits[0]?.commit?.committer?.date;
+    if (!timestamp) throw new Error("No update found");
+
+    const date = new Date(timestamp);
+    element.dateTime = date.toISOString();
+    element.textContent = new Intl.DateTimeFormat("zh-CN", {
+      timeZone: "Asia/Shanghai",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      hourCycle: "h23"
+    }).format(date);
+  } catch (error) {
+    element.textContent = "Unavailable";
+  }
+})();
+</script>
+
+<!-- 主页访问次数 -->
+<div style="text-align: center; margin: 24px 0; color: #888; font-size: 13px;">
+  <span id="busuanzi_container_page_pv" style="display: none;">
+    Page views: <span id="busuanzi_value_page_pv"></span>
+  </span>
+</div>
+
+<script async
+  src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+    
     <footer>
         <div class="container">
             <p>&copy; 2025 Qi Zhou | Powered by <a href="https://github.com">GitHub Pages</a></p>
