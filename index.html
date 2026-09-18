@@ -1,5 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+<script>
+    window.MathJax = {
+        tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+            processEscapes: true
+        }
+    };
+</script>
+
+<script
+    defer
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -322,13 +336,30 @@
 
             <main id="main">
                 <section id="research">
-                    <h2>Research interests</h2>
-                    <p class="research">
-                        My research focuses on fully nonlinear elliptic PDEs and
-                        geometric analysis, particularly the convexity and
-                        regularity of solutions and Liouville-type theorems.
-                    </p>
-                </section>
+    <h2>Research interests</h2>
+
+    <p class="research">
+        My research focuses on fully nonlinear elliptic equations
+        and geometric analysis. In particular, I study the convexity
+        and regularity of solutions to real and complex Monge–Ampère
+        equations, real and complex $k$-Hessian equations, and special
+        Lagrangian equations. I am also interested in curvature flows,
+        elliptic equations in complex geometry, geometric inequalities,
+        and classification theorems for solutions of elliptic PDEs.
+    </p>
+
+    <p class="research">
+        In recent joint work, my collaborator and I established
+        power convexity results for
+        <a href="https://arxiv.org/abs/2505.11002">
+            solutions to the complex Monge–Ampère equation in $\mathbb{C}^2$
+        </a>
+        and for
+        <a href="https://arxiv.org/abs/2609.02516">
+            the torsion function on horo-convex domains in hyperbolic space
+        </a>.
+    </p>
+</section>
 
                 <section id="education">
                     <h2>Education</h2>
@@ -408,7 +439,7 @@
 
                         <li>
                             <h3 class="paper-title">
-                                Power convexity of solutions to complex Monge–Ampère equation in ℂ².
+                                Power convexity of solutions to complex Monge–Ampère equation in $\mathbb{C}^2$.
                             </h3>
                             <div class="meta">With Wei Zhang · Preprint, 2025 · Submitted</div>
                             <div class="links">
@@ -419,8 +450,7 @@
                         
                         <li>
                             <h3 class="paper-title">
-                                The log-concavity of eigenfunction to
-                                complex Monge–Ampère operator in ℂ².
+                                The log-concavity of eigenfunction to complex Monge–Ampère operator in $\mathbb{C}^2$.
                             </h3>
                             <div class="meta">With Wei Zhang · Preprint, 2025</div>
                             <div class="links">
@@ -452,7 +482,7 @@
 
                         <li>
                             <h3 class="paper-title">
-                                On the constant rank theorem for special Lagrangian type operator on 𝕊ⁿ.
+                                On the constant rank theorem for special Lagrangian type operator on $\mathbb{S}^n$.
                             </h3>
                             <div class="meta">With Wei Zhang · Preprint, 2024</div>
                             <div class="links">
