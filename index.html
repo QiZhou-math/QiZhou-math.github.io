@@ -387,10 +387,9 @@
                     <ol class="papers">
                         <li>
                             <h3 class="paper-title">
-                                A strong constant rank theorem for
-                                semilinear elliptic equations.
+                                A strong constant rank theorem for semilinear elliptic equations.
                             </h3>
-                            <div class="meta">Preprint, 2026</div>
+                            <div class="meta">Preprint, 2026 · Submitted</div>
                             <div class="links">
                                 <a href="publications/semilinear-constant-rank.pdf">PDF</a>
                             </div>
@@ -486,13 +485,83 @@
                     </ul>
                 </section>
             </main>
-            <footer>
-                <span>© 2026 Qi Zhou</span>
-                <span>
-                    Last updated:
-                    <time datetime="2026-09-15">September 15, 2026</time>
-                </span>
-            </footer>
+<footer>
+    <span>© <span id="copyright-year">2026</span> Qi Zhou</span>
+    <span>
+        Last updated:
+        <time id="last-updated">Unavailable</time>
+        (UTC+8)
+    </span>
+</footer>
+
+<script>
+    document.getElementById("copyright-year").textContent =
+        new Intl.DateTimeFormat("en", {
+            timeZone: "Asia/Shanghai",
+            year: "numeric"
+        }).format(new Date());
+
+    (async function () {
+        const element = document.getElementById("last-updated");
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 8000);
+
+        element.textContent = "Loading…";
+
+        try {
+            const url = new URL(
+                "https://api.github.com/repos/QiZhou-math/qizhou-math.github.io/commits"
+            );
+
+            url.searchParams.set("path", "index.html");
+            url.searchParams.set("per_page", "1");
+
+            const response = await fetch(url, {
+                signal: controller.signal,
+                cache: "no-cache"
+            });
+
+            if (!response.ok) {
+                throw new Error("Request failed");
+            }
+
+            const commits = await response.json();
+            const timestamp = commits[0]?.commit?.committer?.date;
+            const date = new Date(timestamp);
+
+            if (!timestamp || Number.isNaN(date.getTime())) {
+                throw new Error("Invalid update time");
+            }
+
+            const parts = new Intl.DateTimeFormat("en-GB", {
+                timeZone: "Asia/Shanghai",
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit",
+                hour: "2-digit",
+                minute: "2-digit",
+                second: "2-digit",
+                hourCycle: "h23"
+            }).formatToParts(date);
+
+            const values = Object.fromEntries(
+                parts.map(({ type, value }) => [type, value])
+            );
+
+            element.dateTime = date.toISOString();
+            element.textContent =
+                `${values.year}-${values.month}-${values.day} ` +
+                `${values.hour}:${values.minute}:${values.second}`;
+        } catch (error) {
+            element.textContent = "Unavailable";
+            element.removeAttribute("datetime");
+        } finally {
+            clearTimeout(timeout);
+        }
+    })();
+</script>
+
+            
         </div>
     </body>
 </html>
